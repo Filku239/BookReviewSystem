@@ -1,0 +1,11 @@
+.env
+
+bin/
+obj
+
+*.user
+*.suo
+
+.vscode/
+
+AppRoadmap.txt
