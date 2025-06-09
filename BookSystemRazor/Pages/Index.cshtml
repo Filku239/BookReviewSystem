@@ -1,0 +1,18 @@
+﻿@page
+@model BookSystemRazor.Pages.IndexModel
+
+<h2>Lista książek</h2>
+
+@if (Model.Books.Count == 0)
+{
+    <p>Brak książek do wyświetlenia.</p>
+}
+else
+{
+    <ul>
+        @foreach (var book in Model.Books)
+        {
+            <li><strong>@book.Title</strong> – @book.Author</li>
+        }
+    </ul>
+}

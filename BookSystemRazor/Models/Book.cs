@@ -1,4 +1,4 @@
-namespace BookSystem.Models
+namespace BookSystemRazor.Models
 {
     public class Book
     {
@@ -11,7 +11,5 @@ namespace BookSystem.Models
 
         public DateTime ReleaseDate { get; set; }
 
-        //Foreign key
-        public int GenreId { get; set; }
     }
 }

@@ -10,7 +10,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookSystemApi.Controllers
+namespace BookSystem.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

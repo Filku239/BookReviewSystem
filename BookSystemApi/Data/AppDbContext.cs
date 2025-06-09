@@ -14,5 +14,7 @@ namespace BookSystem.Data
         public DbSet<Genre> Genres { get; set; } = default!;
         public DbSet<Users> Users { get; set; }
 
+        public DbSet<Opinion> Opinions { get; set; }
+
     }
 }
