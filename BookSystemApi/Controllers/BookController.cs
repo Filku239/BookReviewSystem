@@ -98,8 +98,8 @@ namespace BookSystem.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error retrieving book count: {ex.Message}"); // Zmieniono tekst
-                return StatusCode(500, "An internal server error occurred while retrieving the book count."); // Zmieniono tekst
+                Console.WriteLine($"Error retrieving book count: {ex.Message}"); 
+                return StatusCode(500, "An internal server error occurred while retrieving the book count.");
             }
         }
 

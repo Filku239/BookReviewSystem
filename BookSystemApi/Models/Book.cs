@@ -7,9 +7,11 @@ namespace BookSystem.Models
         public required string Author { get; set; }
         public decimal Price { get; set; }
 
+        public string? Description { get; set; }
+
         public string? ImageUrl { get; set; }
 
-        public DateTime ReleaseDate { get; set; }
+        public int ReleaseYear { get; set; }
 
         //Foreign key
         public int GenreId { get; set; }

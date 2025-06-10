@@ -2,12 +2,12 @@
 @model BookSystemRazor.Pages.MainModel
 
 <div class="top-panel">
-    <h2 class="panel-heading">Lista książek</h2>
+    <h2 class="panel-heading">Book List</h2>
 </div>
 
 @if (Model.Books.Count == 0)
 {
-    <p class="no-books-message">Brak książek do wyświetlenia.</p>
+    <p class="no-books-message">No books to display.</p>
 }
 else
 {
@@ -18,11 +18,20 @@ else
                 @if (book.ImageUrl is null)
                 {
                     <div class="book-image-placeholder">
-                        Okładka
+                        Cover
                     </div>
+                }
+                else 
+                {
+                    <div class="book-image-placeholder"> 
+                        <img src="@book.ImageUrl" alt="Cover for @book.Title"> </div>
                 }
                 <div class="book-details">
                     <strong class="book-title">@book.Title</strong> – <span class="book-author">@book.Author</span>
+                     <div>
+                        <span class="book-release-year">Release Year: @book.ReleaseYear</span>
+                        <p class="book-description">@book.Description</p>
+                    </div>
                 </div>
             </li>
         }
@@ -193,6 +202,13 @@ else
     font-size: 0.8em;
     text-align: center;
     flex-shrink: 0;
+}
+
+.book-image-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    display: block;
 }
 
 .book-details {
