@@ -1,31 +1,112 @@
-html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
 body {
-  margin-bottom: 60px;
+    font-family: 'Merriweather', serif;
+    color: #4a4a4a;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+.container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
+.main-nav {
+    background-color: #e0e0e0;
+    border-bottom: 1px solid #c0c0c0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.logo {
+    font-family: 'Merriweather', serif;
+    font-weight: 700;
+    color: #333333;
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+
+.menu-toggler {
+    display: none;
+    background: none;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.toggler-icon {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin: 5px 0;
+}
+
+.nav-links-wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.nav-item {
+    margin-left: 20px;
+}
+
+.nav-link {
+    font-family: 'Merriweather', serif;
+    color: #555555;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s ease-in-out;
+    text-decoration: none;
+    display: block;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.main-footer {
+    background-color: #e0e0e0;
+    border-top: 1px solid #c0c0c0;
+    color: #555555;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.main-footer a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.main-footer a:hover {
+    text-decoration: underline;
+}
+
+.main-content {
+    min-height: calc(100vh - 180px);
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
