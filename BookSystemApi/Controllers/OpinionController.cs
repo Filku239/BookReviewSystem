@@ -50,5 +50,20 @@ namespace BookSystemApi.Controllers
 
             return CreatedAtAction(nameof(GetOpinionByBooks), new { id = opinion.Id }, opinion);
         }
+
+        [HttpGet("count")]
+        public async Task<ActionResult<int>> GetOpinionCount()
+        {
+            try
+            {
+                int count = await _context.Opinions.CountAsync();
+                return Ok(count);
+            }
+             catch (Exception ex)
+            {
+                Console.WriteLine($"Error retrieving opinion count: {ex.Message}"); 
+                return StatusCode(500, "An internal server error occurred while retrieving the book count.");
+            }
+        }
     }
 }

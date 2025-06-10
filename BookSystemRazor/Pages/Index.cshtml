@@ -1,209 +1,255 @@
-﻿@page
+@page
 @model BookSystemRazor.Pages.IndexModel
 
-<div class="top-panel">
-    <h2 class="panel-heading">Lista książek</h2>
-</div>
+<section class="welcome-hero">
+    <div class="welcome-content-wrapper">
+        <h1 class="welcome-headline">WITAMY W NASZEJ BIBLIOTECZCE!</h1>
+        <p class="welcome-intro-text">
+            Zanurz się w świecie literatury. Odkryj bogactwo wiedzy i emocji.
+        </p>
 
-@if (Model.Books.Count == 0)
-{
-    <p class="no-books-message">Brak książek do wyświetlenia.</p>
-}
-else
-{
-    <ul class="book-list">
-        @foreach (var book in Model.Books)
-        {
-            <li class="book-item">
-                @if (book.ImageUrl is null)
-                {
-                    <div class="book-image-placeholder">
-                        Okładka
-                    </div>
-                }
-                <div class="book-details">
-                    <strong class="book-title">@book.Title</strong> – <span class="book-author">@book.Author</span>
-                </div>
-            </li>
-        }
-    </ul>
-}
+        <div class="statistics-grid">
+            <div class="statistic-card">
+                <i class="icon-book">📚</i>
+                <div class="statistic-number">@Model.bookCount</div>
+                <div class="statistic-label">książek</div>
+            </div>
+            <div class="statistic-card">
+                <i class="icon-genre">📖</i>
+                <div class="statistic-number">@Model.genreCount</div>
+                <div class="statistic-label">gatunków literackich</div>
+            </div>
+            <div class="statistic-card">
+                <i class="icon-user">👥</i>
+                <div class="statistic-number">@Model.userCount</div>
+                <div class="statistic-label">zaufanych użytkowników</div>
+            </div>
+            <div class="statistic-card">
+                <i class="icon-review">⭐</i>
+                <div class="statistic-number">@Model.opinionCount</div>
+                <div class="statistic-label">wystawionych opinii</div>
+            </div>
+        </div>
+
+        <p class="welcome-outro-text">
+            Dołącz do naszej społeczności i podziel się swoją miłością do czytania.
+        </p>
+    </div>
+</section>
 
 <style>
-  body {
+    body {
     font-family: 'Merriweather', serif;
     color: #4a4a4a;
-    background-color: #f2f2f2;
+    background-color: #f5f5f5;
     margin: 0;
     padding: 0;
-}
-
-.container {
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 15px;
-    padding-right: 15px;
-}
-
-.main-nav {
-    background-color: #e0e0e0;
-    border-bottom: 1px solid #c0c0c0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 10px 0;
+    line-height: 1.6;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-.nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
+main {
+    flex: 1;
 }
 
-.logo {
-    font-family: 'Merriweather', serif;
-    font-weight: 700;
-    color: #333333;
-    font-size: 1.5rem;
+a {
+    color: #5d7e8a;
     text-decoration: none;
 }
 
-.menu-toggler {
-    display: none;
-    background: none;
-    border: 1px solid #ccc;
-    padding: 5px 10px;
-    cursor: pointer;
-}
-
-.toggler-icon {
-    display: block;
-    width: 25px;
-    height: 3px;
-    background-color: #333;
-    margin: 5px 0;
-}
-
-.nav-links-wrapper {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-}
-
-.nav-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-}
-
-.nav-item {
-    margin-left: 20px;
-}
-
-.nav-link {
-    font-family: 'Merriweather', serif;
-    color: #555555;
-    padding: 0.5rem 1rem;
-    transition: color 0.3s ease-in-out;
-    text-decoration: none;
-    display: block;
-}
-
-.nav-link:hover,
-.nav-link:focus {
-    color: #007bff;
-    text-decoration: none;
-}
-
-.main-footer {
-    background-color: #e0e0e0;
-    border-top: 1px solid #c0c0c0;
-    color: #555555;
-    padding: 20px 0;
-    text-align: center;
-    margin-top: 30px;
-}
-
-.main-footer a {
-    color: #007bff;
-    text-decoration: none;
-}
-
-.main-footer a:hover {
+a:hover {
+    color: #43636e;
     text-decoration: underline;
 }
 
-.main-content {
-    min-height: calc(100vh - 180px);
-    padding-top: 20px;
-    padding-bottom: 20px;
+.welcome-hero {
+    background-color: #e0e0e0;
+    background-image: linear-gradient(135deg, #e8e8e8 0%, #dcdcdc 100%);
+    padding: 60px 20px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    border: 1px solid #c8c8c8;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    overflow: hidden;
+    animation: fadeIn 1s ease-out;
 }
 
-.top-panel {
-    background-color: #f0f0f0;
-    padding: 20px;
+.welcome-content-wrapper {
+    position: relative;
+    z-index: 1;
+}
+
+.welcome-headline {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    color: #2c3e50;
+    font-size: 3.8em;
     margin-bottom: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.panel-heading {
-    color: #333;
-    margin-top: 0;
-    font-size: 2em;
-}
-
-.no-books-message {
-    color: #555;
-    text-align: center;
+.welcome-intro-text,
+.welcome-outro-text {
+    font-family: 'Merriweather', serif;
+    color: #5d7e8a;
+    font-size: 1.4em;
+    margin-bottom: 35px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
     font-style: italic;
 }
 
-.book-list {
-    list-style: none;
-    padding: 0;
+.welcome-outro-text {
+    margin-top: 35px;
+    margin-bottom: 0;
+    font-weight: 400;
 }
 
-.book-item {
+.statistics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.statistic-card {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    padding: 15px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-}
-
-.book-image-placeholder {
-    width: 100px;
-    height: 150px;
-    background-color: #eee;
-    border: 1px dashed #ccc;
-    margin-right: 15px;
-    display: flex;
     justify-content: center;
-    align-items: center;
-    color: #aaa;
-    font-size: 0.8em;
-    text-align: center;
-    flex-shrink: 0;
+    min-height: 160px;
+    border: 1px solid #e0e0e0;
 }
 
-.book-details {
-    flex-grow: 1;
+.statistic-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
-.book-title {
-    color: #0056b3;
-    font-weight: bold;
+.icon-book,
+.icon-genre,
+.icon-user,
+.icon-review {
+    font-size: 3em;
+    margin-bottom: 10px;
+    line-height: 1;
 }
 
-.book-author {
+.statistic-number {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 3.5em;
+    color: #b05c3c;
+    margin-bottom: 5px;
+    line-height: 1;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+}
+
+.statistic-label {
+    font-family: 'Merriweather', serif;
+    font-weight: 700;
+    font-size: 1.1em;
+    color: #6a6a6a;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+@@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@@media (max-width: 992px) {
+    .welcome-headline {
+        font-size: 3em;
+    }
+    .welcome-intro-text,
+    .welcome-outro-text {
+        font-size: 1.2em;
+    }
+    .statistics-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 20px;
+    }
+    .statistic-number {
+        font-size: 3em;
+    }
+    .icon-book, .icon-genre, .icon-user, .icon-review {
+        font-size: 2.5em;
+    }
+}
+
+@@media (max-width: 768px) {
+    .welcome-headline {
+        font-size: 2.5em;
+        letter-spacing: 1.5px;
+    }
+    .welcome-intro-text,
+    .welcome-outro-text {
+        font-size: 1.1em;
+    }
+    .welcome-hero {
+        padding: 40px 15px;
+    }
+    .statistics-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 15px;
+    }
+    .statistic-number {
+        font-size: 2.8em;
+    }
+    .icon-book, .icon-genre, .icon-user, .icon-review {
+        font-size: 2.2em;
+    }
+}
+
+@@media (max-width: 576px) {
+    .welcome-headline {
+        font-size: 2em;
+        letter-spacing: 1px;
+    }
+    .welcome-intro-text,
+    .welcome-outro-text {
+        font-size: 1em;
+    }
+    .statistic-number {
+        font-size: 2.5em;
+    }
+    .icon-book, .icon-genre, .icon-user, .icon-review {
+        font-size: 2em;
+    }
+    .statistics-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    .statistic-card {
+        padding: 20px;
+    }
 }
 </style>

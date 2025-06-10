@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using System.Net.Http;
 using System.Net.Http.Json;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using BookSystemRazor.Models;
 
@@ -10,32 +9,57 @@ namespace BookSystemRazor.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public List<Book> Books { get; set; } = new();
+        public int bookCount { get; set; }
 
-        public IndexModel(ILogger<IndexModel> logger, IHttpClientFactory httpClientFactory)
+        public int genreCount { get; set; }
+        public int userCount { get; set; }
+        public int opinionCount { get; set; }
+
+        public IndexModel(IHttpClientFactory httpClientFactory)
         {
-            _logger = logger;
             _httpClientFactory = httpClientFactory;
         }
-
 
         public async Task OnGetAsync()
         {
             var client = _httpClientFactory.CreateClient("BookApi");
-            var response = await client.GetAsync("book");
-
-            if (response.IsSuccessStatusCode)
+            try
             {
-                var books = await response.Content.ReadFromJsonAsync<List<Book>>();
-                if (books != null)
+                var bookResponse = await client.GetAsync("book/count");
+
+                if (bookResponse.IsSuccessStatusCode)
                 {
-                    Books = books;
+                    bookCount = await bookResponse.Content.ReadFromJsonAsync<int>();
+                }
+
+                var genreResponse = await client.GetAsync("genre/count");
+
+                if (genreResponse.IsSuccessStatusCode)
+                {
+                    genreCount = await genreResponse.Content.ReadFromJsonAsync<int>();
+                }
+
+                var userResponse = await client.GetAsync("user/count");
+
+                if (userResponse.IsSuccessStatusCode)
+                {
+                    userCount = await userResponse.Content.ReadFromJsonAsync<int>();
+                }
+
+                var opinionResponse = await client.GetAsync("opinion/count");
+
+                if (opinionResponse.IsSuccessStatusCode)
+                {
+                    opinionCount = await opinionResponse.Content.ReadFromJsonAsync<int>();
                 }
             }
-        }
+            catch (Exception ex)
+            {
+                bookCount = 0;
+            }
 
+        }
     }
 }

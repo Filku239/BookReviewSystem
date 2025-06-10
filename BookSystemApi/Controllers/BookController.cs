@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using BookSystem.Data;
 using BookSystem.Models;
 
-namespace BookSystemApi.Controllers
+namespace BookSystem.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -86,6 +86,21 @@ namespace BookSystemApi.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
+        }
+
+        [HttpGet("count")]
+        public async Task<ActionResult<int>> GetBookCount()
+        {
+            try
+            {
+                int count = await _context.Books.CountAsync();
+                return Ok(count);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error retrieving book count: {ex.Message}"); // Zmieniono tekst
+                return StatusCode(500, "An internal server error occurred while retrieving the book count."); // Zmieniono tekst
+            }
         }
 
         private bool BookExists(int id)

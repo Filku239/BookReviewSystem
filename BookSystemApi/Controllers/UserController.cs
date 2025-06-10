@@ -65,6 +65,21 @@ namespace BookSystem.Controllers
             return Ok(new { user.Id, user.Email });
         }
 
+        [HttpGet("count")]
+        public async Task<ActionResult<int>> GetUserCount()
+        {
+            try
+            {
+                int count = await _context.Users.CountAsync();
+                return Ok(count);
+            }
+             catch (Exception ex)
+            {
+                Console.WriteLine($"Error retrieving user count: {ex.Message}"); 
+                return StatusCode(500, "An internal server error occurred while retrieving the book count.");
+            }
+        }
+
         private string HashPassword(string password)
         {
             using var sha = SHA256.Create();
